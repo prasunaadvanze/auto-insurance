@@ -16,7 +16,6 @@ import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
 export default function Page() {
   const { schema, result, progress, loading, error, start, next } = useQuote();
   const [showToast, setShowToast] = useState(false);
-
   useEffect(() => {
     start();
   }, [start]);
@@ -92,9 +91,7 @@ export default function Page() {
             </>
           )}
 
-          {result && (
-            <StepIndicator progress={100} completed />
-          )}
+          {result && <StepIndicator progress={100} completed />}
 
           {loading && <FormSkeleton />}
 
@@ -120,7 +117,9 @@ export default function Page() {
             </div>
             <div>
               <p className="text-sm font-semibold">Quote generated!</p>
-              <p className="text-xs text-slate-400">Your rate is ready to review</p>
+              <p className="text-xs text-slate-400">
+                Your rate is ready to review
+              </p>
             </div>
           </div>
         </div>

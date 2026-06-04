@@ -15,7 +15,10 @@ interface Props {
   completed?: boolean;
 }
 
-function resolveStepIndex(stepId: string | undefined, progress: number): number {
+function resolveStepIndex(
+  stepId: string | undefined,
+  progress: number,
+): number {
   if (!stepId) return 0;
   const lower = stepId.toLowerCase();
   const idx = STEPS.findIndex(
@@ -41,7 +44,10 @@ export default function StepIndicator({
         const isActive = i === activeIndex && !completed;
 
         return (
-          <div key={step.id} className="flex items-center flex-1 last:flex-none">
+          <div
+            key={step.id}
+            className="flex items-center flex-1 last:flex-none"
+          >
             <div className="flex flex-col items-center gap-1.5 min-w-0">
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
@@ -74,7 +80,9 @@ export default function StepIndicator({
             {i < STEPS.length - 1 && (
               <div
                 className={`flex-1 h-0.5 mx-1 sm:mx-2 rounded transition-colors duration-500 ${
-                  i < activeIndex || completed ? "bg-emerald-400" : "bg-slate-200"
+                  i < activeIndex || completed
+                    ? "bg-emerald-400"
+                    : "bg-slate-200"
                 }`}
               />
             )}
