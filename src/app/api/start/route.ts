@@ -1,25 +1,21 @@
 import { NextRequest } from "next/server";
-import api from "@/app/lib/api";
+import { createBackendClient } from "@/app/lib/api";
+import { getBearerToken, unauthorizedResponse } from "@/app/lib/serverAuth";
 
 export async function POST(req: NextRequest) {
   try {
-    // ✅ parse request body
+    const accessToken = getBearerToken(req);
+    if (!accessToken) {
+      return unauthorizedResponse();
+    }
+
     const body = await req.json();
-
-  
-
-    // ✅ call backend API
+    const api = createBackendClient(accessToken);
     const { data } = await api.post("quote/start", body);
 
-    // ✅ return response
     return Response.json(data);
-
   } catch (error) {
-
-
-    return Response.json(
-      { error: "Failed to start quote" },
-      { status: 500 }
-    );
+    console.error("START ERROR:", error);
+    return Response.json({ error: "Failed to start quote" }, { status: 500 });
   }
 }

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" fill="none">
+  <!-- Background -->
+  <rect width="192" height="192" fill="#1e40af" rx="45"/>
+  
+  <!-- Shield outline -->
+  <path d="M96 30L130 50V85C130 115 96 145 96 145C96 145 62 115 62 85V50L96 30Z" 
+        fill="#ffffff" stroke="#1e40af" stroke-width="2"/>
+  
+  <!-- Checkmark -->
+  <path d="M85 95L92 105L115 80" 
+        stroke="#1e40af" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

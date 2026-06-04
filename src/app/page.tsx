@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useIsAuthenticated } from "@azure/msal-react";
 import useQuote from "./hooks/useQuote";
 import DynamicForm from "./components/DynamicForm";
 import ProgressBar from "./components/ProgressBar";
@@ -14,12 +15,15 @@ import StepIndicator from "./components/StepIndicator";
 import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
 
 export default function Page() {
+  const isAuthenticated = useIsAuthenticated();
   const { schema, result, progress, loading, error, start, next } = useQuote();
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    start();
-  }, [start]);
+    if (isAuthenticated) {
+      start();
+    }
+  }, [isAuthenticated, start]);
 
   useEffect(() => {
     if (result) {
