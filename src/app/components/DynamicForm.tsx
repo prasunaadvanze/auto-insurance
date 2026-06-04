@@ -93,22 +93,22 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
       onSubmit={handleSubmit}
       className="space-y-5 animate-fade-in-up"
     >
-      <div className="pb-1 border-b border-slate-100">
-        <h3 className="text-xl font-bold text-slate-800">{schema.title}</h3>
-        <p className="text-sm text-slate-500 mt-1">
+      <div className="pb-1 border-b border-neutral-100">
+        <h3 className="text-xl font-bold text-neutral-800">{schema.title}</h3>
+        <p className="text-sm text-neutral-500 mt-1">
           Fields marked with * are required
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {schema.fields.map((field) => {
           const hasError = !!errors[field.name] && touched[field.name];
           const Icon = fieldIcon(field.name);
 
-          const inputClasses = `w-full pl-11 pr-4 py-3 rounded-xl border bg-slate-50/50 text-slate-800 text-sm transition input-focus-ring ${
+          const inputClasses = `w-full pl-11 pr-4 py-3 rounded-xl border bg-neutral-50/80 text-neutral-800 text-sm transition input-focus-ring ${
             hasError
               ? "border-red-300 bg-red-50/30"
-              : "border-slate-200 hover:border-slate-300"
+              : "border-neutral-200 hover:border-neutral-300"
           }`;
 
           return (
@@ -116,17 +116,17 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
               <label
                 htmlFor={field.name}
                 className={`text-sm font-semibold flex items-center gap-1 ${
-                  hasError ? "text-red-600" : "text-slate-700"
+                  hasError ? "text-red-600" : "text-neutral-700"
                 }`}
               >
                 {field.label}
-                {field.required && <span className="text-indigo-500">*</span>}
+                {field.required && <span className="text-brand">*</span>}
               </label>
 
               <div className="relative">
                 <Icon
                   className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${
-                    hasError ? "text-red-400" : "text-slate-400"
+                    hasError ? "text-red-400" : "text-neutral-400"
                   }`}
                 />
 
@@ -173,7 +173,7 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
 
       <button
         type="submit"
-        className="group w-full flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white py-3.5 rounded-xl font-semibold shadow-md shadow-indigo-200 hover:shadow-lg hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all duration-200"
+        className="group btn-primary w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold hover:-translate-y-0.5 transition-all duration-200"
       >
         Continue
         <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

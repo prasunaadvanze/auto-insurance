@@ -52,10 +52,10 @@ export default function StepIndicator({
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
                   isDone
-                    ? "bg-emerald-500 text-white shadow-md shadow-emerald-200"
+                    ? "bg-neutral-800 text-white shadow-md"
                     : isActive
-                      ? "bg-indigo-600 text-white shadow-md shadow-indigo-200 ring-4 ring-indigo-100"
-                      : "bg-slate-100 text-slate-400"
+                      ? "bg-brand text-white shadow-md shadow-brand/25 ring-4 ring-brand-light"
+                      : "bg-neutral-100 text-neutral-400"
                 }`}
               >
                 {isDone ? (
@@ -67,10 +67,10 @@ export default function StepIndicator({
               <span
                 className={`text-[10px] font-semibold uppercase tracking-wide hidden sm:block ${
                   isActive
-                    ? "text-indigo-600"
+                    ? "text-brand"
                     : isDone
-                      ? "text-emerald-600"
-                      : "text-slate-400"
+                      ? "text-neutral-700"
+                      : "text-neutral-400"
                 }`}
               >
                 {step.label}
@@ -81,8 +81,8 @@ export default function StepIndicator({
               <div
                 className={`flex-1 h-0.5 mx-1 sm:mx-2 rounded transition-colors duration-500 ${
                   i < activeIndex || completed
-                    ? "bg-emerald-400"
-                    : "bg-slate-200"
+                    ? "bg-brand"
+                    : "bg-neutral-200"
                 }`}
               />
             )}

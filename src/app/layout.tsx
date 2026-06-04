@@ -12,11 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "GAINSCO Insurance | Auto Quote",
-  description:
-    "Get a personalized auto insurance quote in minutes. Fast, secure, and guided coverage options.",
+  title: "Flexible Affordable Auto Insurance | GAINSCO Auto Insurance®",
+  description: "Professional auto insurance quotes in Sec — GAINSCO Auto Insurance",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/icons/icon-192.png",
+  },
 };
+
 
 export default function RootLayout({
   children,
