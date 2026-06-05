@@ -47,8 +47,8 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const{isSignedIn} = useUser();
-  const { openSignIn } = useClerk();
+  // const{isSignedIn} = useUser();
+  // const { openSignIn } = useClerk();
   useEffect(() => {
     setFormData({});
     setErrors({});
@@ -87,10 +87,10 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-    if(!isSignedIn){
-      openSignIn();
-      return;
-    }
+    // if(!isSignedIn){
+    //   openSignIn();
+    //   return;
+    // }
     onSubmit(formData);
   };
 
