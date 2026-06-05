@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useQuote from "../hooks/useQuote";
-import DynamicForm from "../components/DynamicForm";
-import ProgressBar from "../components/ProgressBar";
-import ResultCard from "../components/ResultCard";
-import FormSkeleton from "../components/FormSkeleton";
-import Hero from "../components/Hero";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import Footer from "../components/Footer";
-import StepIndicator from "../components/StepIndicator";
+import useQuote from "./hooks/useQuote";
+import DynamicForm from "./components/DynamicForm";
+import ProgressBar from "./components/ProgressBar";
+import ResultCard from "./components/ResultCard";
+import FormSkeleton from "./components/FormSkeleton";
+import Hero from "./components/Hero";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
+import StepIndicator from "./components/StepIndicator";
 import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
 
 export default function Page() {
@@ -49,7 +49,9 @@ export default function Page() {
                 <FileText className="w-5 h-5 text-brand" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-neutral-800">Your Quote</h2>
+                <h2 className="text-xl font-bold text-neutral-800">
+                  Your Quote
+                </h2>
                 <p className="text-xs text-neutral-500">
                   {result
                     ? "Review your personalized rate"

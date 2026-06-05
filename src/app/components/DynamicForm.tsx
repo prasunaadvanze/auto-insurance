@@ -10,6 +10,7 @@ import {
   ChevronRight,
   AlertCircle,
 } from "lucide-react";
+import { useClerk, useUser } from "@clerk/nextjs";
 
 type Field = {
   type: string;
@@ -34,7 +35,12 @@ function fieldIcon(name: string) {
   const n = name.toLowerCase();
   if (n.includes("zip") || n.includes("location") || n.includes("state"))
     return MapPin;
-  if (n.includes("vehicle") || n.includes("make") || n.includes("model") || n.includes("year"))
+  if (
+    n.includes("vehicle") ||
+    n.includes("make") ||
+    n.includes("model") ||
+    n.includes("year")
+  )
     return Car;
   if (n.includes("age") || n.includes("driver") || n.includes("name"))
     return User;
@@ -46,7 +52,8 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-
+  const { isSignedIn } = useUser();
+  const { openSignIn } = useClerk();
   useEffect(() => {
     setFormData({});
     setErrors({});
@@ -85,14 +92,15 @@ export default function DynamicForm({ schema, onSubmit }: Props) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
+    if (!isSignedIn) {
+      openSignIn();
+      return;
+    }
     onSubmit(formData);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-5 animate-fade-in-up"
-    >
+    <form onSubmit={handleSubmit} className="space-y-5 animate-fade-in-up">
       <div className="pb-1 border-b border-neutral-100">
         <h3 className="text-xl font-bold text-neutral-800">{schema.title}</h3>
         <p className="text-sm text-neutral-500 mt-1">
