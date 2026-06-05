@@ -21,11 +21,11 @@ interface Props {
   onStartOver?: () => void;
 }
 
-const COVERAGE_ITEMS = [
-  { icon: Shield, label: "Liability", value: "$100K / $300K" },
-  { icon: Car, label: "Collision", value: "$500 deductible" },
-  { icon: HeartPulse, label: "Medical", value: "$5,000" },
-];
+// const COVERAGE_ITEMS = [
+//   { icon: Shield, label: "Liability", value: "$100K / $300K" },
+//   { icon: Car, label: "Collision", value: "$500 deductible" },
+//   { icon: HeartPulse, label: "Medical", value: "$5,000" },
+// ];
 
 export default function ResultCard({ result, onStartOver }: Props) {
   const [copied, setCopied] = useState(false);
@@ -94,7 +94,7 @@ export default function ResultCard({ result, onStartOver }: Props) {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
           {COVERAGE_ITEMS.map(({ icon: Icon, label, value }) => (
             <div
               key={label}
@@ -109,7 +109,7 @@ export default function ResultCard({ result, onStartOver }: Props) {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div className="flex flex-wrap gap-3">
           <button

@@ -37,7 +37,7 @@ export default function Hero() {
 
           <h1 className="text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold leading-[1.08] tracking-tight text-neutral-900 mt-6 mb-5">
             Professional auto insurance quotes in{" "}
-            <span className="text-brand">Sec</span>
+            <span className="text-brand">Seconds</span>
           </h1>
 
           <p className="text-neutral-600 text-lg mb-8 max-w-lg leading-relaxed">
