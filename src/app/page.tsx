@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import StepIndicator from "./components/StepIndicator";
 import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
+  
 
 export default function Page() {
   const { schema, result, progress, loading, error, start, next } = useQuote();

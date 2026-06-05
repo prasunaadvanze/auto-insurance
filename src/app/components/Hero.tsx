@@ -14,7 +14,7 @@ import Image from "next/image";
 
 const STATS = [
   { icon: Users, value: "500K+", label: "Quotes generated" },
-  { icon: Zap, value: "Sec", label: "Quote speed" },
+  { icon: Zap, value: "Seconds", label: "Quote speed" },
   { icon: TrendingDown, value: "22%", label: "Avg. savings" },
 ];
 

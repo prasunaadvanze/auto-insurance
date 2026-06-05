@@ -34,11 +34,11 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-5">
             <span className="flex items-center gap-1.5 text-xs text-neutral-500">
               <Zap className="w-3.5 h-3.5 text-brand" />
-              Quotes in Sec
+              Quotes in Seconds
             </span>
             <span className="flex items-center gap-1.5 text-xs text-neutral-500">
               <Phone className="w-3.5 h-3.5 text-brand" />
-              1.866.GAINSCO
+               1-866-243-7890
             </span>
           </div>
 
