@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import StepIndicator from "./components/StepIndicator";
+import WorkflowChips from "./components/WorkflowChips";
 import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
   
 
@@ -50,7 +51,10 @@ export default function Page() {
                 <FileText className="w-5 h-5 text-brand" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-neutral-800">Your Quote</h2>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="text-xl font-bold text-neutral-800">Your Quote</h2>
+                  <WorkflowChips />
+                </div>
                 <p className="text-xs text-neutral-500">
                   {result
                     ? "Review your personalized rate"
