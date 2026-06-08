@@ -108,44 +108,48 @@ export default function ResultCard({ result, onStartOver }: Props) {
     <div className="space-y-5 animate-confetti-pop">
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand to-brand-dark text-white p-6 shadow-lg shadow-brand/25">
         <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3" />
-        <div className="relative flex items-start gap-4">
-          <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-            <PartyPopper className="w-6 h-6" />
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex flex-wrap items-center gap-2 mb-1">
-              <CheckCircle2 className="w-5 h-5 shrink-0" />
-              <span className="font-bold text-lg">Quote ready!</span>
-              {workflowLoading && (
-                <span className="inline-flex items-center gap-1.5 text-xs text-white/80">
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  Loading status...
-                </span>
-              )}
-              {!workflowLoading && !workflowError && workflowStatus && (
-                <>
-                  {workflowStatus.IsMvr && (
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
-                      MVR
-                    </span>
-                  )}
-                  {workflowStatus.IsClue && (
-                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
-                      CLUE
-                    </span>
-                  )}
-                </>
-              )}
+        <div className="relative flex items-center justify-between gap-4">
+          <div className="flex items-start gap-4 min-w-0">
+            <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+              <PartyPopper className="w-6 h-6" />
             </div>
-            {workflowError && (
-              <div className="flex items-center gap-1.5 text-xs text-red-200 mb-1">
-                <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
-                {workflowError}
+            <div className="min-w-0">
+              <div className="flex items-center gap-2 mb-1">
+                <CheckCircle2 className="w-5 h-5 shrink-0" />
+                <span className="font-bold text-lg">Quote ready!</span>
               </div>
+              {workflowError && (
+                <div className="flex items-center gap-1.5 text-xs text-red-200 mb-1">
+                  <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                  {workflowError}
+                </div>
+              )}
+              <p className="text-white/85 text-sm">
+                Your personalized rate is locked in for 30 days.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 ml-auto shrink-0">
+            {workflowLoading && (
+              <span className="inline-flex items-center gap-1.5 text-xs text-white/80">
+                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                Loading status...
+              </span>
             )}
-            <p className="text-white/85 text-sm">
-              Your personalized rate is locked in for 30 days.
-            </p>
+            {!workflowLoading && !workflowError && workflowStatus && (
+              <>
+                {workflowStatus.IsMvr && (
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                    MVR
+                  </span>
+                )}
+                {workflowStatus.IsClue && (
+                  <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                    CLUE
+                  </span>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
