@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
+  AlertTriangle,
   CheckCircle2,
   Copy,
   Download,
+  Loader2,
   Mail,
-  Shield,
-  Car,
-  HeartPulse,
   PartyPopper,
 } from "lucide-react";
+
+const WORKFLOW_API_URL =
+  "https://worklow-deepcth3a6gmg5dz.centralindia-01.azurewebsites.net/test";
+
+interface WorkflowStatus {
+  IsMvr: boolean;
+  IsClue: boolean;
+  QuoteNumber: string;
+}
 
 interface Result {
   premium: number;
@@ -29,6 +37,46 @@ interface Props {
 
 export default function ResultCard({ result, onStartOver }: Props) {
   const [copied, setCopied] = useState(false);
+  const [workflowStatus, setWorkflowStatus] = useState<WorkflowStatus | null>(
+    null,
+  );
+  const [workflowLoading, setWorkflowLoading] = useState(true);
+  const [workflowError, setWorkflowError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchWorkflowStatus() {
+      try {
+        setWorkflowLoading(true);
+        setWorkflowError(null);
+
+        const response = await fetch(WORKFLOW_API_URL, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Request failed (${response.status})`);
+        }
+
+        const data: WorkflowStatus = await response.json();
+        setWorkflowStatus(data);
+      } catch (err) {
+        if (err instanceof Error && err.name === "AbortError") return;
+        setWorkflowError(
+          err instanceof Error
+            ? err.message
+            : "Failed to load workflow status",
+        );
+      } finally {
+        setWorkflowLoading(false);
+      }
+    }
+
+    fetchWorkflowStatus();
+
+    return () => controller.abort();
+  }, []);
 
   const formatted = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -64,11 +112,37 @@ export default function ResultCard({ result, onStartOver }: Props) {
           <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
             <PartyPopper className="w-6 h-6" />
           </div>
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <CheckCircle2 className="w-5 h-5" />
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-2 mb-1">
+              <CheckCircle2 className="w-5 h-5 shrink-0" />
               <span className="font-bold text-lg">Quote ready!</span>
+              {workflowLoading && (
+                <span className="inline-flex items-center gap-1.5 text-xs text-white/80">
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  Loading status...
+                </span>
+              )}
+              {!workflowLoading && !workflowError && workflowStatus && (
+                <>
+                  {workflowStatus.IsMvr && (
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                      MVR
+                    </span>
+                  )}
+                  {workflowStatus.IsClue && (
+                    <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                      CLUE
+                    </span>
+                  )}
+                </>
+              )}
             </div>
+            {workflowError && (
+              <div className="flex items-center gap-1.5 text-xs text-red-200 mb-1">
+                <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                {workflowError}
+              </div>
+            )}
             <p className="text-white/85 text-sm">
               Your personalized rate is locked in for 30 days.
             </p>
