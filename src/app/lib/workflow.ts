@@ -1,5 +1,5 @@
 export const WORKFLOW_API_URL =
-  "https://worklow-deepcth3a6gmg5dz.centralindia-01.azurewebsites.net/test";
+  "https://gainsco-workflow-orchestrator.azurewebsites.net/test";
 
 export interface WorkflowStatus {
   IsMvr: boolean;
