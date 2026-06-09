@@ -15,7 +15,19 @@ import { RotateCcw, FileText, AlertTriangle } from "lucide-react";
   
 
 export default function Page() {
-  const { schema, result, progress, loading, error, start, next } = useQuote();
+  const {
+    schema,
+    result,
+    progress,
+    loading,
+    error,
+    journey,
+    workflowStatus,
+    workflowLoading,
+    workflowError,
+    start,
+    next,
+  } = useQuote();
   const [showToast, setShowToast] = useState(false);
   useEffect(() => {
     start();
@@ -101,7 +113,14 @@ export default function Page() {
           )}
 
           {!loading && result && (
-            <ResultCard result={result} onStartOver={handleStartOver} />
+            <ResultCard
+              result={result}
+              journey={journey}
+              workflowStatus={workflowStatus}
+              workflowLoading={workflowLoading}
+              workflowError={workflowError}
+              onStartOver={handleStartOver}
+            />
           )}
         </div>
 
