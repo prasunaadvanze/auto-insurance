@@ -1,4 +1,4 @@
-# Auto Insurance POC — GAINSCO
+# Auto Insurance POC — GAINSCO POC
 
 This is a Next.js project built as a Proof of Concept for GAINSCO Auto Insurance.
 
